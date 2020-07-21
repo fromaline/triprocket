@@ -1,7 +1,7 @@
 extends ../layout/default
 
-block page-content
-  .wrapper#catalog
+block page-main-area
+  .wrapper.page-content-wrapper#catalog
     .page-title-container
       h1.page-title Наши номера
 
@@ -28,7 +28,7 @@ block page-content
             p {{ equipment.value }}
 
           button(type="submit") Применить
-          button(type="reset" @click="resetFilters") Сбросить фильтр
+          button(type="reset" @click="resetFilters" v-if="!isFilterEmpty") Сбросить фильтр
 
       section.catalog-items.grid
         article.catalog-item(v-for="item in items", href="#") 

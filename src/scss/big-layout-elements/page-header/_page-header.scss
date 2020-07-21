@@ -12,14 +12,20 @@
 
   &-wrapper {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
   }
 
   &__nav {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+
+    @media (--mobile-max) {
+      display: none;
+    }
 
     &-link {
       color: $color-black;
@@ -39,6 +45,14 @@
           color: $color-accent;
         }
       }
+    }
+  }
+
+  .mobile-menu-icon {
+    display: none;
+
+    @media (--mobile-max) {
+      display: inline-block;
     }
   }
 }

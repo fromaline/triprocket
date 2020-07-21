@@ -8,6 +8,14 @@
   &-items {
     grid-template-columns: repeat(3, 270px);
     justify-content: center;
+
+    @media (--mobile-landscape-max) {
+      grid-template-columns: repeat(2, 270px);
+    }
+
+    @media (max-width: 650px) {
+      grid-template-columns: repeat(1, 270px);
+    }
   }
 
   &-item {
@@ -28,6 +36,15 @@
 
     &__content {
       padding: 20px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr;
+    margin-top: 25px;
+
+    &-items {
+      margin-top: 20px;
     }
   }
 }

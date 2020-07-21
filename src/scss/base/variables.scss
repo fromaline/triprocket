@@ -4,6 +4,7 @@ $color-black: #1a212f;
 
 $max-width: 1170px;
 $tablet-width: 1024px;
+$mobile-landscape-width: 976px;
 $hover-width: $tablet-width;
 
 $font-lato: 'Lato', sans-serif;
@@ -16,4 +17,6 @@ $trans-slow: all 0.45s ease-in-out;
 
 $z-header: 2;
 
-@custom-media --tablet-max (max-width: $table-width);
+@custom-media --tablet-max (max-width: 1024px);
+@custom-media --mobile-landscape-max (max-width: 976px);
+@custom-media --mobile-max (max-width: 500px);

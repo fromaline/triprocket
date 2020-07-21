@@ -22,8 +22,9 @@ html(lang="en")
       script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
       script(src="./assets/js/core.js" defer)
   body
-    .page-content#app
+    .page-content
+      include ./mobile-menu.pug
       include ./header.pug
 
       .page-main-area
-        block page-content
+        block page-main-area

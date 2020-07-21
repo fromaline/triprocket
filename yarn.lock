@@ -5358,6 +5358,11 @@ mixin-deep@^1.2.0:
   dependencies:
     minimist "^1.2.5"
 
+mmenu-js@^8.5.14:
+  version "8.5.14"
+  resolved "https://registry.yarnpkg.com/mmenu-js/-/mmenu-js-8.5.14.tgz#576ce694f3a2889086d85c8422404576bf22ae86"
+  integrity sha512-sqZVxrwyXCmMjhviXeGQtwxWs9Y2KaBZDkrqCnxYz7Hp1AgKe9cqDaMaC6DjZIx4ny3zZyihH+jBfM7qsTUH1Q==
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"

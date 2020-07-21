@@ -21,3 +21,11 @@
   font-display: swap;
   src: local('Rubik'), url('../fonts/Rubik-Bold.ttf') format('truetype');
 }
+
+@font-face {
+  font-weight: 900;
+  font-family: 'Rubik';
+  font-style: normal;
+  font-display: swap;
+  src: local('Rubik'), url('../fonts/Rubik-Black.ttf') format('truetype');
+}

@@ -9,6 +9,13 @@
     flex: 1;
     padding-top: 38px;
 
-    transform: translateX(38px);
+    @media (min-width: 1315px) {
+      transform: translateX(50px);
+    }
+  }
+
+  &-wrapper {
+    max-width: 1220px;
+    margin-bottom: 40px;
   }
 }

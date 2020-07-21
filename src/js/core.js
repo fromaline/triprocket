@@ -1,6 +1,14 @@
 import vSelect from 'vue-select'
+import mmenu from './plugins/mmenu'
 
 document.addEventListener('DOMContentLoaded', () => {
+  const mobileMenu = new Mmenu('#mobile-menu', {
+    extensions: ['position-right', 'pagedim-black'],
+    navbar: {
+      title: 'Котейка',
+    },
+  })
+
   Vue.component('v-select', vSelect)
 
   const sortVals = {
@@ -145,46 +153,63 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       ],
       filters: {
-        costs: { start: 100, end: 600 },
+        costs: { start: '', end: '' },
         squares: [
-          { value: 0.63, selected: true },
-          { value: 0.9, selected: true },
-          { value: 1.13, selected: true },
-          { value: 1.56, selected: true },
-          { value: 2.56, selected: true },
-          { value: 2.88, selected: true },
+          { value: 0.63, selected: false },
+          { value: 0.9, selected: false },
+          { value: 1.13, selected: false },
+          { value: 1.56, selected: false },
+          { value: 2.56, selected: false },
+          { value: 2.88, selected: false },
         ],
         equipments: [
           {
             value: equipments.empty,
-            selected: true,
+            selected: false,
           },
           {
             value: equipments.tray,
-            selected: true,
+            selected: false,
           },
           {
             value: equipments.tower,
-            selected: true,
+            selected: false,
           },
           {
             value: equipments.ball,
-            selected: true,
+            selected: false,
           },
           {
             value: equipments.house,
-            selected: true,
+            selected: false,
           },
         ],
       },
     },
     computed: {
       computedItems: {
-        get: function () {
+        get() {
           return this.items
         },
-        set: function (newItems) {
+        set(newItems) {
           this.items = newItems
+        },
+      },
+      isFilterEmpty: {
+        get() {
+          const squareRule = this.filters.squares.some(
+            item => item.selected === true
+          )
+
+          const equipmentRule = this.filters.equipments.some(
+            item => item.selected === true
+          )
+
+          const costRule =
+            this.filters.costs.start.length !== 0 ||
+            this.filters.costs.end.length !== 0
+
+          return !(squareRule || equipmentRule || costRule)
         },
       },
     },

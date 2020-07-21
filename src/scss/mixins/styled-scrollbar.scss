@@ -1,0 +1,15 @@
+@mixin styled-scrollbar() {
+  scrollbar-width: thin;
+  scrollbar-color: $color-accent #fff;
+
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #fff;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-accent;
+    border: 0px solid #fff;
+  }
+}

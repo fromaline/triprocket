@@ -1,0 +1,16 @@
+$color-primary: #fff;
+$color-accent: #f05b1b;
+
+$max-width: 1170px;
+$tablet-width: 1024px;
+$hover-width: $tablet-width;
+
+$font-lato: 'Lato', sans-serif;
+$font-rubik: 'Rubik', sans-serif;
+
+$trans-super-fast: all 0.2s ease;
+$trans-fast: all 0.25s ease-in-out;
+$trans-mid: all 0.35s ease-in-out;
+$trans-slow: all 0.45s ease-in-out;
+
+@custom-media --tablet-max (max-width: $table-width);

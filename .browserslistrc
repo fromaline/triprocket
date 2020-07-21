@@ -1,0 +1,12 @@
+[production]
+Edge >= 45
+ff >= 52
+safari >= 10
+Opera >= 44
+chrome >= 57
+not dead
+not ie <= 11
+
+[development]
+last 1 chrome version
+last 1 firefox version

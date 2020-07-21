@@ -1,0 +1,11 @@
+@mixin restricted-hover(
+  $transition: $trans-super-fast,
+  $minWidth: $hover-width
+) {
+  transition: $transition;
+  @media (min-width: $minWidth) {
+    &:hover {
+      @content;
+    }
+  }
+}

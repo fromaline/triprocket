@@ -1,0 +1,5 @@
+body {
+  @include styled-scrollbar();
+
+  height: 200vh;
+}

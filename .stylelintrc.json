@@ -1,0 +1,34 @@
+{
+  "extends": [
+    "stylelint-config-sass-guidelines",
+    "stylelint-config-rational-order"
+  ],
+  "plugins": ["stylelint-order", "stylelint-config-rational-order/plugin"],
+  "rules": {
+    "plugin/rational-order": [
+      true,
+      {
+        "border-in-box-model": false,
+        "empty-line-between-groups": true
+      }
+    ],
+    "scss/at-import-no-partial-leading-underscore": null,
+    "scss/dollar-variable-pattern": null,
+    "scss/at-mixin-pattern": null,
+    "scss/at-function-pattern": null,
+    "order/properties-alphabetical-order": null,
+    "order/order": null,
+    "selector-class-pattern": null,
+    "selector-max-compound-selectors": 10,
+    "rule-empty-line-before": null,
+    "max-nesting-depth": 10,
+    "length-zero-no-unit": null,
+    "selector-pseudo-element-colon-notation": "single",
+    "function-parentheses-space-inside": null,
+    "selector-max-id": null,
+    "indentation": null,
+    "selector-no-qualifying-type": null,
+    "color-named": null,
+    "no-missing-end-of-source-newline": null
+  }
+}

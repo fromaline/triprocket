@@ -5,19 +5,23 @@ block page-content
     .page-title-container
       h1.page-title Наши номера
 
-      select.js-choice
-        option По площади
-        option По площади
-        option По цене
-        option По цене
+      v-select.catalog-select(:options="options" :placeholder="placeholder")
+        <template #open-indicator="{ attributes }">
+          <span v-bind="attributes">
+            include ../../svg/accord-down-svg.svg
+          </span>
+          
+        </template>
 
-
-    .catalog#catalog
+    .catalog
+      aside.catalog-filters
+      
       section.catalog-items.grid
         article.catalog-item(v-for="item in items", href="#") 
           img.catalog-item__image(:src="item.imageSrc", alt="кот")
-          h5 {{ item.title }}
-          p Размеры (ШхГхВ) - {{ item.sizes }} см
-          p Площадь - {{ item.square }} м2
-          p Цена за сутки: {{ item.cost }}
-          a.catalog-item__button(href="#") Забронировать
+          .catalog-item__content
+            h5 {{ item.title }}
+            p Размеры (ШхГхВ) - {{ item.sizes }} см
+            p Площадь - {{ item.square }} м2
+            p Цена за сутки: {{ item.cost }}
+            a.catalog-item__button(href="#") Забронировать

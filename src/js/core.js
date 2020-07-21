@@ -1,12 +1,18 @@
-import Choices from 'choices.js'
+import vSelect from 'vue-select'
 
 document.addEventListener('DOMContentLoaded', () => {
-  const element = document.querySelector('.js-choice')
-  const choices = new Choices(element)
+  Vue.component('v-select', vSelect)
 
-  const catalog = new Vue({
-    el: '#catalog',
+  const app = new Vue({
+    el: '#app',
     data: {
+      attributes: {
+        ref: 'openIndicator',
+        role: 'presentation',
+        class: 'vs__open-indicator',
+      },
+      options: [`↑ По площади`, '↓ По площади', '↑ По цене', '↓ По цене'],
+      placeholder: 'Фильтровать',
       items: [
         {
           title: 'Эконом',

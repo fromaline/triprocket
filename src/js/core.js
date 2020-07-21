@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const equipments = {
     empty: 'Пустой номер',
     tray: 'Лежак',
-    tower: 'Когтеочка',
+    tower: 'Когтеточка',
     ball: 'Игровой-комплекс',
     house: 'Домик',
   }
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: 'Сьют',
       sizes: '125х125х180',
       square: 1.56,
-      equipment: ['tray', 'tower', 'ball'],
+      equipment: [equipments.tray, equipments.tower, equipments.ball],
       cost: 350,
       imageSrc: './assets/images/catalog-img-4.png',
     },
@@ -31,7 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
       title: 'Люкс',
       sizes: '160х160х180',
       square: 2.56,
-      equipment: ['tray', 'tower', 'ball', 'house'],
+      equipment: [
+        equipments.tray,
+        equipments.tower,
+        equipments.ball,
+        equipments.house,
+      ],
       cost: 500,
       imageSrc: './assets/images/catalog-img-5.png',
     },
@@ -39,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: 'Супер-Люкс',
       sizes: '180х160х180',
       square: 2.88,
-      equipment: ['tray', 'tower', 'ball'],
+      equipment: [equipments.tray, equipments.tower, equipments.ball],
       cost: 600,
       imageSrc: './assets/images/catalog-img-6.png',
     },
@@ -47,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: 'Эконом',
       sizes: '90х70х180',
       square: 0.63,
-      equipment: [],
+      equipment: [equipments.empty],
       cost: 100,
       imageSrc: './assets/images/catalog-img-1.png',
     },
@@ -55,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: 'Эконом плюс',
       sizes: '90х100х180',
       square: 0.9,
-      equipment: ['tray', 'tower'],
+      equipment: [equipments.tray, equipments.tower],
       cost: 200,
       imageSrc: './assets/images/catalog-img-2.png',
     },
@@ -63,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: 'Комфорт',
       sizes: '100х125х180',
       square: 1.13,
-      equipment: ['tray', 'tower', 'ball'],
+      equipment: [equipments.tray, equipments.tower, equipments.ball],
       cost: 250,
       imageSrc: './assets/images/catalog-img-3.png',
     },
@@ -89,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
           title: 'Сьют',
           sizes: '125х125х180',
           square: 1.56,
-          equipment: ['tray', 'tower', 'ball'],
+          equipment: [equipments.tray, equipments.tower, equipments.ball],
           cost: 350,
           imageSrc: './assets/images/catalog-img-4.png',
         },
@@ -97,7 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
           title: 'Люкс',
           sizes: '160х160х180',
           square: 2.56,
-          equipment: ['tray', 'tower', 'ball', 'house'],
+          equipment: [
+            equipments.tray,
+            equipments.tower,
+            equipments.ball,
+            equipments.house,
+          ],
           cost: 500,
           imageSrc: './assets/images/catalog-img-5.png',
         },
@@ -105,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
           title: 'Супер-Люкс',
           sizes: '180х160х180',
           square: 2.88,
-          equipment: ['tray', 'tower', 'ball'],
+          equipment: [equipments.tray, equipments.tower, equipments.ball],
           cost: 600,
           imageSrc: './assets/images/catalog-img-6.png',
         },
@@ -113,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
           title: 'Эконом',
           sizes: '90х70х180',
           square: 0.63,
-          equipment: [],
+          equipment: [equipments.empty],
           cost: 100,
           imageSrc: './assets/images/catalog-img-1.png',
         },
@@ -121,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
           title: 'Эконом плюс',
           sizes: '90х100х180',
           square: 0.9,
-          equipment: ['tray', 'tower'],
+          equipment: [equipments.tray, equipments.tower],
           cost: 200,
           imageSrc: './assets/images/catalog-img-2.png',
         },
@@ -129,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
           title: 'Комфорт',
           sizes: '100х125х180',
           square: 1.13,
-          equipment: ['tray', 'tower', 'ball'],
+          equipment: [equipments.tray, equipments.tower, equipments.ball],
           cost: 250,
           imageSrc: './assets/images/catalog-img-3.png',
         },
@@ -147,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         equipments: [
           {
             value: equipments.empty,
-            selected: false,
+            selected: true,
           },
           {
             value: equipments.tray,
@@ -202,11 +212,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       },
       submitFilters() {
+        const squareFilters = this.filters.squares
+          .filter(item => item.selected === true)
+          .reduce((acc, item) => {
+            acc.push(item.value)
+            return acc
+          }, [])
+
+        const equipmentFilters = this.filters.equipments
+          .filter(item => item.selected === true)
+          .reduce((acc, item) => {
+            acc.push(item.value)
+            return acc
+          }, [])
+
         this.computedItems = allItems.filter(item => {
-          if (
+          const costRule =
             item.cost >= +this.filters.costs.start &&
             item.cost <= +this.filters.costs.end
-          ) {
+
+          const squareRule = squareFilters.includes(item.square)
+
+          const equipmentRule = item.equipment.every(item =>
+            equipmentFilters.includes(item)
+          )
+
+          if (costRule && squareRule && equipmentRule) {
             return item
           } else {
             return false

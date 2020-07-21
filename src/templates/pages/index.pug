@@ -34,8 +34,16 @@ block page-main-area
         article.catalog-item(v-for="item in items", href="#") 
           img.catalog-item__image(:src="item.imageSrc", alt="кот")
           .catalog-item__content
-            h5 {{ item.title }}
-            p Размеры (ШхГхВ) - {{ item.sizes }} см
-            p Площадь - {{ item.square }} м2
-            p Цена за сутки: {{ item.cost }}₽
-            a.catalog-item__button(href="#") Забронировать
+            h5.catalog-item__title {{ item.title }}
+            p.catalog-item__item Размеры (ШхГхВ) - {{ item.sizes }} см
+            p.catalog-item__item Площадь - {{ item.square }} м2
+            p.catalog-item__item Оснащение номера
+            p.catalog-item__item 
+              | Цена за сутки: 
+              span.catalog-item__price {{ item.cost }}
+              | ₽
+
+            a.catalog-item__button(href="#") 
+              span Забронировать
+              div.icon
+                include ../../svg/paw-svg.svg

@@ -38,6 +38,10 @@
 
       &:not(:last-child) {
         margin-right: 30px;
+
+        @media (max-width: 600px) {
+          margin-right: 20px;
+        }
       }
 
       @include tag(a) {

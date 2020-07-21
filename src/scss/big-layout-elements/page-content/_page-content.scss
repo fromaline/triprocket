@@ -12,6 +12,10 @@
     @media (min-width: 1315px) {
       transform: translateX(50px);
     }
+
+    @media (--mobile-max) {
+      padding-top: 25px;
+    }
   }
 
   &-wrapper {

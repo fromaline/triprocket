@@ -9,6 +9,15 @@
     font-size: px-to-rem(36);
     font-family: $font-rubik;
     font-style: normal;
-    line-height: 43px;
+    line-height: px-to-rem(43);
+  }
+
+  @media (--mobile-max) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .page-title {
+      font-size: px-to-rem(30);
+    }
   }
 }

@@ -1,5 +1,6 @@
 body {
   @include styled-scrollbar();
 
-  height: 200vh;
+  display: flex;
+  flex-direction: column;
 }

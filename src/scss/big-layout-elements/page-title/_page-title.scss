@@ -1,0 +1,18 @@
+.page-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .choices {
+    width: 174px;
+  }
+
+  .page-title {
+    color: $color-black;
+    font-weight: 700;
+    font-size: px-to-rem(36);
+    font-family: $font-rubik;
+    font-style: normal;
+    line-height: 43px;
+  }
+}

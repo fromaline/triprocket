@@ -10,3 +10,14 @@ block page-content
         option По площади
         option По цене
         option По цене
+
+
+    .catalog#catalog
+      section.catalog-items.grid
+        article.catalog-item(v-for="item in items", href="#") 
+          img.catalog-item__image(:src="item.imageSrc", alt="кот")
+          h5 {{ item.title }}
+          p Размеры (ШхГхВ) - {{ item.sizes }} см
+          p Площадь - {{ item.square }} м2
+          p Цена за сутки: {{ item.cost }}
+          a.catalog-item__button(href="#") Забронировать

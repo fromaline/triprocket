@@ -51,7 +51,13 @@ const paths = {
 }
 
 const postcssPlugins = [
-  postcssPresetEnv({ stage: 1, autoprefixer: false }),
+  postcssPresetEnv({
+    stage: 0,
+    autoprefixer: false,
+    features: {
+      block_reusable: true,
+    },
+  }),
   cssDeclarationSorter({ order: 'smacss' }),
 ]
 

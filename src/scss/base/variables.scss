@@ -14,4 +14,6 @@ $trans-fast: all 0.25s ease-in-out;
 $trans-mid: all 0.35s ease-in-out;
 $trans-slow: all 0.45s ease-in-out;
 
+$z-header: 2;
+
 @custom-media --tablet-max (max-width: $table-width);

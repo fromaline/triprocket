@@ -19,6 +19,8 @@
   }
 
   &-item {
+    display: flex;
+    flex-direction: column;
     height: 428px;
 
     background: #fff;
@@ -35,6 +37,9 @@
     }
 
     &__content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
       padding: 20px 15px;
     }
 
@@ -62,7 +67,7 @@
 
     &__price {
       color: $color-black;
-      font-weight: 500;
+      font-weight: 700;
       font-size: px-to-rem(18);
       font-family: $font-lato;
       font-style: normal;
@@ -74,6 +79,7 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
+      margin-top: auto;
       padding: 5px;
 
       color: #fff;

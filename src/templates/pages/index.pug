@@ -22,13 +22,18 @@ block page-main-area
           div.filters-form__cont
             p Площадь
             div(v-for="square in filters.squares").filters-form__checkbox-cont
-              input(type="checkbox" v-model:checked="square.selected") 
+              .checkbox
+                input(type="checkbox" v-model:checked="square.selected") 
+                include ../../svg/check-svg.svg
               p {{ square.value }} м2
+
 
           div.filters-form__cont
             p Оснащение номера
             div(v-for="equipment in filters.equipments").filters-form__checkbox-cont
-              input(type="checkbox" v-model:checked="equipment.selected") 
+              .checkbox
+                input(type="checkbox" v-model:checked="equipment.selected") 
+                include ../../svg/check-svg.svg
               p {{ equipment.value }}
 
           div.filters-form__cont

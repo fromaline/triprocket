@@ -35,10 +35,10 @@ block page-main-area
           img.catalog-item__image(:src="item.imageSrc", alt="кот")
           .catalog-item__content
             h5.catalog-item__title {{ item.title }}
-            p.catalog-item__item Размеры (ШхГхВ) - {{ item.sizes }} см
-            p.catalog-item__item Площадь - {{ item.square }} м2
-            p.catalog-item__item Оснащение номера
-            p.catalog-item__item 
+            p.catalog-item__point Размеры (ШхГхВ) - {{ item.sizes }} см
+            p.catalog-item__point Площадь - {{ item.square }} м2
+            p.catalog-item__point Оснащение номера
+            p.catalog-item__point 
               | Цена за сутки: 
               span.catalog-item__price {{ item.cost }}₽
 

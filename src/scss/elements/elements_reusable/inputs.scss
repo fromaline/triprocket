@@ -7,30 +7,40 @@
   border: 1px solid #e1e1e1;
 
   svg {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
     opacity: 0;
+
+    transition: all 0.1s ease;
   }
 
   input[type='checkbox'] {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 2;
 
     width: 20px;
     height: 20px;
 
+    cursor: pointer;
     opacity: 0;
 
-    cursor: pointer;
-
     &:checked + svg {
-      position: absolute;
-
-      top: 50%;
-      left: 50%;
-
-      transform: translate(-50%, -50%);
-
       opacity: 1;
     }
+  }
+
+  &-label {
+    font-weight: normal;
+    font-size: px-to-rem(14);
+    font-family: $font-lato;
+    font-style: normal;
+    line-height: px-to-rem(17);
   }
 }

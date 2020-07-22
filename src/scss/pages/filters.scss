@@ -2,16 +2,34 @@
   &__cont {
     display: flex;
     flex-direction: column;
-    margin-bottom: 14px;
+    margin-bottom: 22px;
 
-    p {
-      margin-bottom: 5px;
+    .filters-form__title {
+      margin-bottom: 12px;
+
+      font-weight: 500;
+      font-size: px-to-rem(16);
+      font-family: $font-lato;
+      font-style: normal;
+      line-height: px-to-rem(19);
+    }
+
+    &_with-buttons {
+      margin-top: 30px;
     }
   }
 
   &__checkbox-cont {
     display: flex;
     align-items: center;
+
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+
+    .checkbox {
+      margin-right: 4px;
+    }
   }
 
   .filters-price {

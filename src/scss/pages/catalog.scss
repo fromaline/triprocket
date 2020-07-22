@@ -64,6 +64,14 @@
       font-family: $font-lato;
       font-style: normal;
       line-height: px-to-rem(17);
+
+      &_equipment-svgs {
+        margin-left: 9px;
+
+        svg:not(:last-child) {
+          margin-right: 4px;
+        }
+      }
     }
 
     &__price {

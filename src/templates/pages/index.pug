@@ -12,23 +12,28 @@ block page-main-area
 
     .catalog
       aside.catalog-filters
-        form(@submit.prevent="submitFilters")
-          p Цена за сутки,₽
-          input(type="number" v-model:value="filters.costs.start")
-          input(type="number" v-model:value="filters.costs.end")
+        form(@submit.prevent="submitFilters").filters-form
+          div.filters-form__cont
+            p Цена за сутки,₽
+            .filters-price
+              input(type="number" v-model:value="filters.costs.start")
+              input(type="number" v-model:value="filters.costs.end")
         
-          p Площадь
-          div(v-for="square in filters.squares")
-            input(type="checkbox" v-model:checked="square.selected") 
-            p {{ square.value }}
+          div.filters-form__cont
+            p Площадь
+            div(v-for="square in filters.squares").filters-form__checkbox-cont
+              input(type="checkbox" v-model:checked="square.selected") 
+              p {{ square.value }} м2
 
-          p Оснащение номера
-          div(v-for="equipment in filters.equipments")
-            input(type="checkbox" v-model:checked="equipment.selected") 
-            p {{ equipment.value }}
+          div.filters-form__cont
+            p Оснащение номера
+            div(v-for="equipment in filters.equipments").filters-form__checkbox-cont
+              input(type="checkbox" v-model:checked="equipment.selected") 
+              p {{ equipment.value }}
 
-          button(type="submit") Применить
-          button(type="reset" @click="resetFilters" v-if="!isFilterEmpty") Сбросить фильтр
+          div.filters-form__cont
+            button(type="submit").filters-form__button.filters-form__button_submit Применить
+            button(type="reset" @click="resetFilters" v-if="!isFilterEmpty").filters-form__button.filters-form__button_reset Сбросить фильтр
 
       section.catalog-items.grid
         article.catalog-item(v-for="item in items", href="#") 

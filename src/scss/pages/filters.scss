@@ -1,0 +1,57 @@
+.filters-form {
+  &__cont {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 14px;
+
+    p {
+      margin-bottom: 5px;
+    }
+  }
+
+  &__checkbox-cont {
+    display: flex;
+    align-items: center;
+  }
+
+  .filters-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    input {
+      width: 48%;
+
+      border: 1px solid #e1e1e1;
+    }
+  }
+
+  .filters-form__button {
+    padding: 12px;
+
+    font-weight: 400;
+    font-size: px-to-rem(14);
+    font-family: $font-lato;
+    font-style: normal;
+    line-height: px-to-rem(17);
+
+    background: #fac663;
+
+    border: 1px solid #fac663;
+    border-radius: 25px;
+
+    transition: $trans-fast;
+
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+
+    &:hover {
+      background: transparent;
+      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25),
+        0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+}

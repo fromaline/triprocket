@@ -5,6 +5,12 @@
   justify-content: space-between;
   margin-top: 65px;
 
+  @media (max-width: 1200px) and (min-width: 768px) {
+    &-filters {
+      width: 50%;
+    }
+  }
+
   &-items {
     grid-template-columns: repeat(3, 270px);
     justify-content: center;

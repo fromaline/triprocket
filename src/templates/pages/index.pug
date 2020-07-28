@@ -51,10 +51,13 @@ block page__content
         section.products-grid.grid
           article.products-grid__item.product-card(v-for="item in items", href="#")
             picture.product-card__image(alt="Кот, котик, кошка")
-              //- source(srcset="assets/images/test@2x.webp" type="image/webp"  media="min-width:1281px")
-              source(srcset="assets/images/test@4x.webp" type="image/webp" media="min-width:1281px")
-              //- source(srcset="assets/images/test.webp" type="image/webp" )
-              img.product-card__image(src="./assets/images/test.png")
+              source(type="image/webp" media="(min-width: 1921px)" srcset="assets/images/catalog-img-1@4x.webp 2x")
+              source(type="image/webp" media="(min-width: 1921px)" srcset="assets/images/catalog-img-1@2x.webp")
+              source(type="image/webp" media="(min-width: 1281px)" srcset="assets/images/catalog-img-1@2x.webp 2x")
+              source(type="image/webp" media="(min-width: 850px)" srcset="assets/images/catalog-img-1@2x.webp")
+              source(type="image/webp" media="(min-width: 320px)" srcset="assets/images/catalog-img-1@2x.webp 2x")
+              source(type="image/webp" media="(min-width: 320px)" srcset="assets/images/catalog-img-1.webp")
+              img.product-card__image(src="./assets/images/catalog-img-1.png")
 
             .product-card__content
               h5.product-card__title {{ item.title }}

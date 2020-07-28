@@ -194,7 +194,8 @@ const webps = () => {
     .src(path.join(paths.src.images, '*.png'))
     .pipe(
       webp({
-        quality: 75,
+        quality: isDev ? 50 : 100,
+        lossless: isDev ? true : false,
       })
     )
     .pipe(gulp.dest(paths.dist.images))
@@ -204,7 +205,16 @@ const webps = () => {
 const pngs = () => {
   return gulp
     .src(path.join(paths.src.images, '*.png'))
-    .pipe(imagemin())
+    .pipe(
+      imagemin({
+        quality: isDev ? 50 : 100,
+        optimizationLevel: isDev ? 7 : 0,
+        bitDepthReduction: isDev ? true : false,
+        colorTypeReduction: isDev ? true : false,
+        paletteReduction: isDev ? true : false,
+        interlaced: isDev ? true : false,
+      })
+    )
     .pipe(gulp.dest(paths.dist.images))
     .pipe(browserSync.stream())
 }

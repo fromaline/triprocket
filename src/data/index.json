@@ -1,0 +1,46 @@
+{
+  "catalogItems": [
+    {
+      "title": "Эконом",
+      "sizes": "90х70х180",
+      "square": 0.63,
+      "equipment": { "empty": true },
+      "cost": 100
+    },
+    {
+      "title": "Эконом плюс",
+      "sizes": "90х100х180",
+      "square": 0.9,
+      "equipment": { "tray": true, "tower": true },
+      "cost": 200
+    },
+    {
+      "title": "Комфорт",
+      "sizes": "100х125х180",
+      "square": 1.13,
+      "equipment": { "tray": true, "tower": true, "ball": true },
+      "cost": 250
+    },
+    {
+      "title": "Сьют",
+      "sizes": "125х125х180",
+      "square": 1.56,
+      "equipment": { "tray": true, "tower": true, "ball": true },
+      "cost": 350
+    },
+    {
+      "title": "Люкс",
+      "sizes": "160х160х180",
+      "square": 2.56,
+      "equipment": { "tray": true, "tower": true, "ball": true, "house": true },
+      "cost": 500
+    },
+    {
+      "title": "Супер-Люкс",
+      "sizes": "180х160х180",
+      "square": 2.88,
+      "equipment": { "tray": true, "tower": true, "ball": true, "house": true },
+      "cost": 600
+    }
+  ]
+}

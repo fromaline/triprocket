@@ -1,41 +1,45 @@
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
 
-const path = require('path'),
-  del = require('del')
+const path = require('path')
+const del = require('del')
+const fs = require('fs')
 
-const browserSync = require('browser-sync').create(),
-  reload = browserSync.reload
+const browserSync = require('browser-sync').create()
+const reload = browserSync.reload
 
-const gulp = require('gulp'),
-  watch = require('gulp-watch'),
-  concat = require('gulp-concat'),
-  sourcemaps = require('gulp-sourcemaps'),
-  uglify = require('gulp-uglify-es').default,
-  plumber = require('gulp-plumber')
+const gulp = require('gulp')
+const watch = require('gulp-watch')
+const concat = require('gulp-concat')
+const sourcemaps = require('gulp-sourcemaps')
+const uglify = require('gulp-uglify-es').default
+const plumber = require('gulp-plumber')
+const data = require('gulp-data')
 
-const rollup = require('gulp-better-rollup'),
-  babel = require('rollup-plugin-babel'),
-  resolve = require('rollup-plugin-node-resolve'),
-  commonjs = require('rollup-plugin-commonjs'),
-  nodeResolve = require('rollup-plugin-node-resolve'),
-  globals = require('rollup-plugin-node-globals')
+const rollup = require('gulp-better-rollup')
+const babel = require('rollup-plugin-babel')
+const resolve = require('rollup-plugin-node-resolve')
+const commonjs = require('rollup-plugin-commonjs')
+const nodeResolve = require('rollup-plugin-node-resolve')
+const globals = require('rollup-plugin-node-globals')
+const json = require('@rollup/plugin-json')
 
-const postcss = require('gulp-postcss'),
-  autoprefixer = require('autoprefixer'),
-  cssDeclarationSorter = require('css-declaration-sorter'),
-  postcssPresetEnv = require('postcss-preset-env'),
-  cssnano = require('cssnano'),
-  gulpStylelint = require('gulp-stylelint')
+const postcss = require('gulp-postcss')
+const autoprefixer = require('autoprefixer')
+const cssDeclarationSorter = require('css-declaration-sorter')
+const postcssPresetEnv = require('postcss-preset-env')
+const cssnano = require('cssnano')
+const gulpStylelint = require('gulp-stylelint')
 
 const sass = require('gulp-sass')
+const cssImport = require('gulp-cssimport')
 sass.compiler = require('node-sass')
 
 const pug = require('gulp-pug')
 
-const svgSprite = require('gulp-svg-sprite'),
-  webp = require('gulp-webp'),
-  imagemin = require('gulp-imagemin')
+const svgSprite = require('gulp-svg-sprite')
+const webp = require('gulp-webp')
+const imagemin = require('gulp-imagemin')
 
 const paths = {
   src: {
@@ -87,10 +91,22 @@ const templating = () => {
     .src(path.join(paths.src.templates, 'pages', '*.pug'))
     .pipe(
       plumber({
-        handleError: function (err) {
+        handleError: err => {
           console.log(err)
           this.emit('end')
         },
+      })
+    )
+    .pipe(
+      data(file => {
+        return JSON.parse(
+          fs.readFileSync(
+            path.join(
+              paths.src.data,
+              `${path.basename(file.path).replace(/\.[^/.]+$/, '')}.json`
+            )
+          )
+        )
       })
     )
     .pipe(
@@ -111,6 +127,7 @@ const styles = () => {
     .src(path.join(paths.src.css, 'style.scss'))
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
+    .pipe(cssImport())
     .pipe(concat(info.name))
     .pipe(postcss(postcssPlugins))
     .pipe(sourcemaps.write('./'))
@@ -141,7 +158,7 @@ const js = () => {
     .src(path.join(paths.src.js, 'core.js'))
     .pipe(
       plumber({
-        handleError: function (err) {
+        handleError: err => {
           console.log(err)
           this.emit('end')
         },
@@ -160,12 +177,20 @@ const js = () => {
             resolve(),
             commonjs(),
             globals(),
+            json(),
           ],
         },
         'umd'
       )
     )
-    .pipe(uglify({ compress: isProd }))
+    .pipe(
+      uglify({
+        compress: false,
+        mangle: {
+          toplevel: isProd,
+        },
+      })
+    )
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(paths.dist.js))
     .pipe(browserSync.stream())

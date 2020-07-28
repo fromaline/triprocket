@@ -48,49 +48,51 @@ block page__content
             button(type="reset" @click="resetFilters" v-if="!isFilterEmpty").button.button_color_accent-100.button_full-width.filters-form__button_reset Сбросить фильтр
 
       main.catalog__main
-        section.products-grid.grid
-          article.products-grid__item.product-card(v-for="item in items", href="#")
-            picture.product-card__image(alt="Кот, котик, кошка")
-              source(type="image/webp" media="(min-width: 1921px)" srcset="assets/images/catalog-img-1@4x.webp 2x")
-              source(type="image/webp" media="(min-width: 1921px)" srcset="assets/images/catalog-img-1@2x.webp")
-              source(type="image/webp" media="(min-width: 1281px)" srcset="assets/images/catalog-img-1@2x.webp 2x")
-              source(type="image/webp" media="(min-width: 850px)" srcset="assets/images/catalog-img-1@2x.webp")
-              source(type="image/webp" media="(min-width: 320px)" srcset="assets/images/catalog-img-1@2x.webp 2x")
-              source(type="image/webp" media="(min-width: 320px)" srcset="assets/images/catalog-img-1.webp")
-              img.product-card__image(src="./assets/images/catalog-img-1.png")
+        section.products-grid.grid(data-catalog-items)
+          each item, index in catalogItems
+            article.products-grid__item.product-card(v-for="item in items", href="#" data-cost=item.cost data-size=item.sizes data-equipment=item.equipment data-catalog-item)
+              picture.product-card__image(alt="Кот, котик, кошка")
+                include ../mixins/Picture
+                block content
+                  +Picture('catalog-img-' + (index + 1))
 
-            .product-card__content
-              h5.product-card__title {{ item.title }}
+              .product-card__content
+                h5.product-card__title=item.title
 
-              p.product-card__point Размеры (ШхГхВ) - {{ item.sizes }} см
+                p.product-card__point='Размеры (ШхГхВ) - ' + item.sizes + 'см'
 
-              p.product-card__point Площадь - {{ item.square }} м2
+                p.product-card__point='Площадь - ' + item.square + 'м2'
 
-              p.product-card__point 
-                | Оснащение номера
+                p.product-card__point 
+                  | Оснащение номера
 
-                span(v-for="equip in item.equipment").product-card__point_equipment-svgs
-                  svg.equipment-empty-svg(role="img" v-if="equip === 'Пустой номер'")
-                    use(xlink:href="./assets/images/symbol/sprite.svg#equipment-empty-svg")
+                  span.product-card__point_equipment-svgs
+                    if item.equipment.empty == true
+                      svg.equipment-empty-svg(role="img")
+                        use(xlink:href="./assets/images/symbol/sprite.svg#equipment-empty-svg")
 
-                  svg.equipment-tray-svg(role="img" v-if="equip === 'Лежак'")
-                    use(xlink:href="./assets/images/symbol/sprite.svg#equipment-tray-svg")
-                    
-                  svg.equipment-tower-svg(role="img" v-if="equip === 'Когтеточка'")
-                    use(xlink:href="./assets/images/symbol/sprite.svg#equipment-tower-svg")
+                    if item.equipment.tray == true
+                      svg.equipment-tray-svg(role="img")
+                        use(xlink:href="./assets/images/symbol/sprite.svg#equipment-tray-svg")
+                        
+                    if item.equipment.tower == true
+                      svg.equipment-tower-svg(role="img")
+                        use(xlink:href="./assets/images/symbol/sprite.svg#equipment-tower-svg")
 
-                  svg.equipment-ball-svg(role="img" v-if="equip === 'Игровой-комплекс'")
-                    use(xlink:href="./assets/images/symbol/sprite.svg#equipment-ball-svg")
+                    if item.equipment.ball == true
+                      svg.equipment-ball-svg(role="img")
+                        use(xlink:href="./assets/images/symbol/sprite.svg#equipment-ball-svg")
 
-                  svg.equipment-house-svg(role="img" v-if="equip === 'Домик'")
-                    use(xlink:href="./assets/images/symbol/sprite.svg#equipment-house-svg")                
+                    if item.equipment.house == true
+                      svg.equipment-house-svg(role="img")
+                        use(xlink:href="./assets/images/symbol/sprite.svg#equipment-house-svg")                
 
-              p.product-card__point 
-                | Цена за сутки: 
-                span.product-card__price {{ item.cost }}₽
+                p.product-card__point 
+                  | Цена за сутки: 
+                  span.product-card__price=item.cost + '₽'
 
-              a.button.button_color_accent-500.button_with-icon.button_full-width.product-card__button(href="#") 
-                span.button__text Забронировать
-                div.button__icon-wrapper
-                  svg.button__icon.paw-svg(role="img")
-                    use(xlink:href="./assets/images/symbol/sprite.svg#paw-svg")
+                a.button.button_color_accent-500.button_with-icon.button_full-width.product-card__button(href="#") 
+                  span.button__text Забронировать
+                  div.button__icon-wrapper
+                    svg.button__icon.paw-svg(role="img")
+                      use(xlink:href="./assets/images/symbol/sprite.svg#paw-svg")

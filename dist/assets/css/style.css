@@ -3204,7 +3204,7 @@ input:focus {
     .products-grid {
       grid-template-columns: repeat(1, 1fr); } }
   .products-grid__item {
-    height: 428px; }
+    min-height: 428px; }
 
 .product-card__button {
   margin-top: auto; }

@@ -1,0 +1,8 @@
+mixin Picture(image)
+  source(type="image/webp" media="(min-width: 1921px)" srcset='assets/images/' + image + '@4x.webp 2x')
+  source(type="image/webp" media="(min-width: 1921px)" srcset='assets/images/' + image + '@2x.webp')
+  source(type="image/webp" media="(min-width: 1281px)" srcset='assets/images/' + image + '@4x.webp 2x')
+  source(type="image/webp" media="(min-width: 850px)" srcset='assets/images/' + image + '@2x.webp')
+  source(type="image/webp" media="(min-width: 320px)" srcset='assets/images/' + image + '@2x.webp 2x')
+  source(type="image/webp" media="(min-width: 320px)" srcset='assets/images/' + image + '.webp')
+  img.product-card__image(src='assets/images/' + image + '.png')

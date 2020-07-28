@@ -1,15 +1,27 @@
 extends ../layout/default
 
-block page-main-area
-  .wrapper.page-content-wrapper#catalog
-    .page-title-container
-      h1.page-title Наши номера
+block page__content
+  .wrapper.page-content__wrapper
+    .page-content__head.page-head
+      h1.page-head__title Наши номера
 
-      v-select.catalog-select(:options="options" :placeholder="placeholder" v-on:input="sortItems")
-        template(#open-indicator="{ attributes }")
-          span(v-bind="attributes")
-            svg.accord-down-svg(role="img")
-              use(xlink:href="./assets/images/symbol/sprite.svg#accord-down-svg")
+      sl-select(placeholder="Фильтровать")
+        sl-menu-item(value="square-up")
+          svg.arrow-up-svg(role="img")
+            use(xlink:href="./assets/images/symbol/sprite.svg#arrow-up-svg")
+          | &nbsp; По площади
+        sl-menu-item(value="square-down")
+          svg.arrow-down-svg(role="img")
+            use(xlink:href="./assets/images/symbol/sprite.svg#arrow-down-svg")
+          | &nbsp; По площади
+        sl-menu-item(value="cost-up")
+          svg.arrow-up-svg(role="img")
+            use(xlink:href="./assets/images/symbol/sprite.svg#arrow-up-svg")
+          | &nbsp; По цене
+        sl-menu-item(value="cost-down")
+          svg.arrow-down-svg(role="img")
+            use(xlink:href="./assets/images/symbol/sprite.svg#arrow-down-svg")
+          | &nbsp; По цене
 
     .catalog
       aside.catalog-filters

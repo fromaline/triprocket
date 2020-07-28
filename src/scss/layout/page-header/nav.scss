@@ -1,0 +1,25 @@
+.nav {
+  &__link {
+    color: $color-black;
+
+    font-weight: 400;
+    font-size: px-to-rem(16);
+    font-family: $font-lato;
+    font-style: normal;
+    line-height: 19px;
+
+    &:not(:last-child) {
+      margin-right: 30px;
+
+      @media (max-width: 600px) {
+        margin-right: 20px;
+      }
+    }
+
+    @include tag(a) {
+      @include restricted-hover {
+        color: $color-accent;
+      }
+    }
+  }
+}

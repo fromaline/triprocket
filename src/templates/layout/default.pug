@@ -17,14 +17,16 @@ html(lang="en")
       title Котейка
 
     block styles
+      //- link(rel="stylesheet", href="https://unpkg.com/@shoelace-style/shoelace@2.0.0-beta.8/dist/shoelace/shoelace.css")
       link(rel="stylesheet", href="./assets/css/style.css")
     block scripts  
-      script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
+      //- script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
       script(src="./assets/js/core.js" defer)
+      script(src="https://unpkg.com/@shoelace-style/shoelace@2.0.0-beta.8/dist/shoelace/shoelace.esm.js" type="module")
   body
-    .page-content
+    .page
       include ./mobile-menu.pug
-      include ./header.pug
+      include ./page-header.pug
 
-      .page-main-area
-        block page-main-area
+      .page__content.page-content
+        block page__content

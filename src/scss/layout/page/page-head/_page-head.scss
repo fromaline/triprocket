@@ -1,23 +1,25 @@
-.page-title-container {
+.page-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  .page-title {
+  &__title {
     color: $color-black;
     font-weight: 700;
     font-size: px-to-rem(36);
     font-family: $font-rubik;
     font-style: normal;
     line-height: px-to-rem(43);
+
+    @media (--mobile-max) {
+      &__title {
+        font-size: px-to-rem(30);
+      }
+    }
   }
 
   @media (--mobile-max) {
     flex-direction: column;
     align-items: flex-start;
-
-    .page-title {
-      font-size: px-to-rem(30);
-    }
   }
 }

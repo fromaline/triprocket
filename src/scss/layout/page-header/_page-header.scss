@@ -1,3 +1,5 @@
+@import './nav';
+
 .page-header {
   position: sticky;
   top: 0;
@@ -10,7 +12,7 @@
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-  &-wrapper {
+  &__wrapper {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -26,33 +28,9 @@
     @media (--mobile-max) {
       display: none;
     }
-
-    &-link {
-      color: $color-black;
-
-      font-weight: 400;
-      font-size: px-to-rem(16);
-      font-family: $font-lato;
-      font-style: normal;
-      line-height: 19px;
-
-      &:not(:last-child) {
-        margin-right: 30px;
-
-        @media (max-width: 600px) {
-          margin-right: 20px;
-        }
-      }
-
-      @include tag(a) {
-        @include restricted-hover {
-          color: $color-accent;
-        }
-      }
-    }
   }
 
-  .mobile-menu-icon {
+  &__mobile-menu-button {
     display: none;
 
     @media (--mobile-max) {

@@ -1,11 +1,13 @@
-.page-content {
+@import './page-head/page-head';
+
+.page {
   display: flex;
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
   min-height: 100%;
 
-  .page-main-area {
+  &__content {
     flex: 1;
     padding-top: 38px;
 
@@ -14,7 +16,7 @@
     }
   }
 
-  &-wrapper {
+  &__wrapper {
     max-width: 1220px;
     margin-bottom: 40px;
   }

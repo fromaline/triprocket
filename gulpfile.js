@@ -186,21 +186,18 @@ const js = () => {
 }
 
 const svg = () => {
-  return (
-    gulp
-      .src(path.join(paths.src.svg, '*.svg'))
-      // .pipe(svgmin())
-      .pipe(
-        svgSprite({
-          mode: {
-            symbol: {
-              sprite: 'sprite.svg',
-            },
+  return gulp
+    .src(path.join(paths.src.svg, '*.svg'))
+    .pipe(
+      svgSprite({
+        mode: {
+          symbol: {
+            sprite: 'sprite.svg',
           },
-        })
-      )
-      .pipe(gulp.dest(paths.dist.images))
-  )
+        },
+      })
+    )
+    .pipe(gulp.dest(paths.dist.images))
 }
 
 const clean = () => {

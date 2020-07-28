@@ -1,6 +1,6 @@
 @mixin styled-scrollbar() {
   scrollbar-width: thin;
-  scrollbar-color: $color-accent #fff;
+  scrollbar-color: $color-accent-500 #fff;
 
   &::-webkit-scrollbar {
     width: 7px;
@@ -9,7 +9,7 @@
     background: #fff;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: $color-accent;
+    background-color: $color-accent-500;
     border: 0px solid #fff;
   }
 }

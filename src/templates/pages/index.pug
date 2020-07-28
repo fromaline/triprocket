@@ -44,8 +44,8 @@ block page__content
               label.checkbox-label {{ equipment.value }}
 
           div.input-group.filters-form__item
-            button(type="submit").filters-form__button.filters-form__button_submit Применить
-            button(type="reset" @click="resetFilters" v-if="!isFilterEmpty").filters-form__button.filters-form__button_reset Сбросить фильтр
+            button(type="submit").button.button_color_accent-100.button_full-width.filters-form__button_submit Применить
+            button(type="reset" @click="resetFilters" v-if="!isFilterEmpty").button.button_color_accent-100.button_full-width.filters-form__button_reset Сбросить фильтр
 
       main.catalog__main
         section.products-grid.grid
@@ -81,8 +81,8 @@ block page__content
                 | Цена за сутки: 
                 span.product-card__price {{ item.cost }}₽
 
-              a.product-card__button(href="#") 
-                span Забронировать
-                div.icon
-                  svg.paw-svg(role="img")
+              a.button.button_color_accent-500.button_with-icon.button_full-width.product-card__button(href="#") 
+                span.button__text Забронировать
+                div.button__icon-wrapper
+                  svg.button__icon.paw-svg(role="img")
                     use(xlink:href="./assets/images/symbol/sprite.svg#paw-svg")

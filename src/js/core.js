@@ -1,5 +1,5 @@
 import vSelect from 'vue-select'
-import mmenu from './plugins/mmenu'
+import './plugins/mmenu'
 
 document.addEventListener('DOMContentLoaded', () => {
   const mobileMenu = new Mmenu('#mobile-menu', {

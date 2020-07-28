@@ -35,6 +35,9 @@ sass.compiler = require('node-sass')
 
 const pug = require('gulp-pug')
 
+const svgmin = require('gulp-svgmin'),
+  svgSprite = require('gulp-svg-sprite')
+
 const paths = {
   src: {
     root: path.join(__dirname, 'src'),
@@ -42,11 +45,13 @@ const paths = {
     data: path.join(__dirname, 'src', 'data'),
     js: path.join(__dirname, 'src', 'js'),
     css: path.join(__dirname, 'src', 'scss'),
+    svg: path.join(__dirname, 'src', 'svg'),
   },
   dist: {
     root: path.join(__dirname, 'dist'),
     js: path.join(__dirname, 'dist', 'assets', 'js'),
     css: path.join(__dirname, 'dist', 'assets', 'css'),
+    images: path.join(__dirname, 'dist', 'assets', 'images'),
   },
 }
 
@@ -180,6 +185,24 @@ const js = () => {
   return js
 }
 
+const svg = () => {
+  return (
+    gulp
+      .src(path.join(paths.src.svg, '*.svg'))
+      // .pipe(svgmin())
+      .pipe(
+        svgSprite({
+          mode: {
+            symbol: {
+              sprite: 'sprite.svg',
+            },
+          },
+        })
+      )
+      .pipe(gulp.dest(paths.dist.images))
+  )
+}
+
 const clean = () => {
   const files = [
     path.join(paths.dist.js, 'core.js'),
@@ -239,6 +262,14 @@ const watchFiles = () => {
       templating
     )
   )
+
+  watch(
+    ['./src/svg/*.svg'],
+    gulp.series(
+      selectedClean.bind(this, [path.join(paths.dist.images, 'sprite.svg')]),
+      svg
+    )
+  )
 }
 
 const liveReload = () => {
@@ -248,7 +279,7 @@ const liveReload = () => {
   )
 }
 
-const baseTask = gulp.series(clean, gulp.parallel(styles, js, templating))
+const baseTask = gulp.series(clean, gulp.parallel(styles, js, templating, svg))
 
 const dev = gulp.series(baseTask, watchFiles, liveReload)
 

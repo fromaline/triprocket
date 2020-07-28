@@ -9,10 +9,6 @@
     flex: 1;
     padding-top: 38px;
 
-    @media (min-width: 1315px) {
-      transform: translateX(50px);
-    }
-
     @media (--mobile-max) {
       padding-top: 25px;
     }

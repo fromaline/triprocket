@@ -225,6 +225,7 @@ const watchFiles = () => {
     },
     open: false,
     ghostMode: false,
+    notify: false,
   })
 
   watch(

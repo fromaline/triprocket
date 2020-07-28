@@ -1,4 +1,6 @@
+@import './page-header/page-header';
 @import './page-head/page-head';
+@import './page-content/page-content';
 
 .page {
   display: flex;
@@ -9,15 +11,10 @@
 
   &__content {
     flex: 1;
-    padding-top: 38px;
+    padding-top: 40px;
 
-    @media (--mobile-max) {
+    @media (--mobile-landscape-max) {
       padding-top: 25px;
     }
-  }
-
-  &__wrapper {
-    max-width: 1220px;
-    margin-bottom: 40px;
   }
 }

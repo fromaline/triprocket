@@ -1,0 +1,106 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+
+  background: #fff;
+  border-radius: 6px;
+
+  box-shadow: 0px 0px 25px rgba(208, 208, 208, 0.25);
+
+  &__image {
+    width: 100%;
+    height: auto;
+
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+
+  &__content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 20px 15px;
+
+    border-right: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    border-left: 1px solid #e1e1e1;
+  }
+
+  &__title {
+    margin-bottom: 10px;
+
+    color: $color-black;
+    font-weight: 600;
+    font-size: px-to-rem(20);
+    font-family: $font-rubik;
+    font-style: normal;
+    line-height: px-to-rem(24);
+  }
+
+  &__point {
+    margin-bottom: 10px;
+
+    color: $color-black;
+    font-weight: normal;
+    font-size: px-to-rem(14);
+    font-family: $font-lato;
+    font-style: normal;
+    line-height: px-to-rem(17);
+
+    &_equipment-svgs {
+      margin-left: 8px;
+
+      svg:not(:last-child) {
+        margin-right: 3px;
+      }
+    }
+  }
+
+  &__price {
+    color: $color-black;
+    font-weight: 700;
+    font-size: px-to-rem(18);
+    font-family: $font-lato;
+    font-style: normal;
+    line-height: px-to-rem(22);
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: auto;
+    padding: 5px;
+
+    color: #fff;
+
+    background: $color-accent;
+
+    border-radius: 25px;
+
+    span {
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+
+      background: #fff;
+
+      border-radius: 50%;
+
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    @include restricted-hover {
+      background: $color-accent--other;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+}

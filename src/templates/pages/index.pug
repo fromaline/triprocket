@@ -7,33 +7,25 @@ block page__content
 
       sl-select(placeholder="Фильтровать")
         sl-menu-item(value="square-up")
-          svg.arrow-up-svg(role="img")
-            use(xlink:href="./assets/images/symbol/sprite.svg#arrow-up-svg")
-          | &nbsp; По площади
+          | ↑ По площади
         sl-menu-item(value="square-down")
-          svg.arrow-down-svg(role="img")
-            use(xlink:href="./assets/images/symbol/sprite.svg#arrow-down-svg")
-          | &nbsp; По площади
+          | ↓ По площади
         sl-menu-item(value="cost-up")
-          svg.arrow-up-svg(role="img")
-            use(xlink:href="./assets/images/symbol/sprite.svg#arrow-up-svg")
-          | &nbsp; По цене
+          | ↑ По цене
         sl-menu-item(value="cost-down")
-          svg.arrow-down-svg(role="img")
-            use(xlink:href="./assets/images/symbol/sprite.svg#arrow-down-svg")
-          | &nbsp; По цене
+          | ↓ По цене
 
-    .catalog
-      aside.catalog-filters
+    .page-content__main.catalog
+      aside.catalog__aside.filters
         form(@submit.prevent="submitFilters").filters-form
-          div.filters-form__cont
-            p.filters-form__title Цена за сутки,₽
-            .filters-price
+          div.input-group.filters-form__item
+            p.input-group__title Цена за сутки,₽
+            .inputs-row.inputs-row_2-cols
               input(type="number" v-model:value="filters.costs.start")
               input(type="number" v-model:value="filters.costs.end")
         
-          div.filters-form__cont
-            p.filters-form__title Площадь
+          div.input-group.filters-form__item
+            p.input-group__title Площадь
             div(v-for="square in filters.squares").filters-form__checkbox-cont
               .checkbox
                 input(type="checkbox" v-model:checked="square.selected") 
@@ -42,8 +34,8 @@ block page__content
               label.checkbox-label {{ square.value }} м2
 
 
-          div.filters-form__cont
-            p.filters-form__title Оснащение номера
+          div.input-group.filters-form__item
+            p.input-group__title Оснащение номера
             div(v-for="equipment in filters.equipments").filters-form__checkbox-cont
               .checkbox
                 input(type="checkbox" v-model:checked="equipment.selected") 
@@ -51,41 +43,46 @@ block page__content
                   use(xlink:href="./assets/images/symbol/sprite.svg#check-svg")
               label.checkbox-label {{ equipment.value }}
 
-          div.filters-form__cont.filters-form__cont_with-buttons
+          div.input-group.filters-form__item
             button(type="submit").filters-form__button.filters-form__button_submit Применить
             button(type="reset" @click="resetFilters" v-if="!isFilterEmpty").filters-form__button.filters-form__button_reset Сбросить фильтр
 
-      section.catalog-items.grid
-        article.catalog-item(v-for="item in items", href="#") 
-          img.catalog-item__image(:src="item.imageSrc", alt="кот")
-          .catalog-item__content
-            h5.catalog-item__title {{ item.title }}
-            p.catalog-item__point Размеры (ШхГхВ) - {{ item.sizes }} см
-            p.catalog-item__point Площадь - {{ item.square }} м2
-            p.catalog-item__point 
-              | Оснащение номера
-              span(v-for="equip in item.equipment").catalog-item__point_equipment-svgs
-                svg.equipment-empty-svg(role="img" v-if="equip === 'Пустой номер'")
-                  use(xlink:href="./assets/images/symbol/sprite.svg#equipment-empty-svg")
+      main.catalog__main
+        section.products-grid.grid
+          article.products-grid__item.product-card(v-for="item in items", href="#") 
+            img.product-card__image(:src="item.imageSrc", alt="кот")
+            .product-card__content
+              h5.product-card__title {{ item.title }}
 
-                svg.equipment-tray-svg(role="img" v-if="equip === 'Лежак'")
+              p.product-card__point Размеры (ШхГхВ) - {{ item.sizes }} см
 
-                  use(xlink:href="./assets/images/symbol/sprite.svg#equipment-tray-svg")
-                svg.equipment-tower-svg(role="img" v-if="equip === 'Когтеточка'")
-                  use(xlink:href="./assets/images/symbol/sprite.svg#equipment-tower-svg")
+              p.product-card__point Площадь - {{ item.square }} м2
 
-                svg.equipment-ball-svg(role="img" v-if="equip === 'Игровой-комплекс'")
-                  use(xlink:href="./assets/images/symbol/sprite.svg#equipment-ball-svg")
+              p.product-card__point 
+                | Оснащение номера
 
-                svg.equipment-house-svg(role="img" v-if="equip === 'Домик'")
-                  use(xlink:href="./assets/images/symbol/sprite.svg#equipment-house-svg")                
+                span(v-for="equip in item.equipment").product-card__point_equipment-svgs
+                  svg.equipment-empty-svg(role="img" v-if="equip === 'Пустой номер'")
+                    use(xlink:href="./assets/images/symbol/sprite.svg#equipment-empty-svg")
 
-            p.catalog-item__point 
-              | Цена за сутки: 
-              span.catalog-item__price {{ item.cost }}₽
+                  svg.equipment-tray-svg(role="img" v-if="equip === 'Лежак'")
+                    use(xlink:href="./assets/images/symbol/sprite.svg#equipment-tray-svg")
+                    
+                  svg.equipment-tower-svg(role="img" v-if="equip === 'Когтеточка'")
+                    use(xlink:href="./assets/images/symbol/sprite.svg#equipment-tower-svg")
 
-            a.catalog-item__button(href="#") 
-              span Забронировать
-              div.icon
-                svg.paw-svg(role="img")
-                  use(xlink:href="./assets/images/symbol/sprite.svg#paw-svg")
+                  svg.equipment-ball-svg(role="img" v-if="equip === 'Игровой-комплекс'")
+                    use(xlink:href="./assets/images/symbol/sprite.svg#equipment-ball-svg")
+
+                  svg.equipment-house-svg(role="img" v-if="equip === 'Домик'")
+                    use(xlink:href="./assets/images/symbol/sprite.svg#equipment-house-svg")                
+
+              p.product-card__point 
+                | Цена за сутки: 
+                span.product-card__price {{ item.cost }}₽
+
+              a.product-card__button(href="#") 
+                span Забронировать
+                div.icon
+                  svg.paw-svg(role="img")
+                    use(xlink:href="./assets/images/symbol/sprite.svg#paw-svg")

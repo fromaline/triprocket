@@ -8,3 +8,9 @@ body {
 
   background: #fff;
 }
+
+::selection {
+  color: $color-black;
+
+  background: $color-accent-100;
+}

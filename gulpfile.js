@@ -3,7 +3,6 @@ const isProd = !isDev
 
 const path = require('path'),
   del = require('del')
-// fs = require('fs')
 
 const browserSync = require('browser-sync').create(),
   reload = browserSync.reload
@@ -14,7 +13,6 @@ const gulp = require('gulp'),
   sourcemaps = require('gulp-sourcemaps'),
   uglify = require('gulp-uglify-es').default,
   plumber = require('gulp-plumber')
-// data = require('gulp-data')
 
 const rollup = require('gulp-better-rollup'),
   babel = require('rollup-plugin-babel'),
@@ -35,8 +33,9 @@ sass.compiler = require('node-sass')
 
 const pug = require('gulp-pug')
 
-const svgmin = require('gulp-svgmin'),
-  svgSprite = require('gulp-svg-sprite')
+const svgSprite = require('gulp-svg-sprite'),
+  webp = require('gulp-webp'),
+  imagemin = require('gulp-imagemin')
 
 const paths = {
   src: {
@@ -45,7 +44,8 @@ const paths = {
     data: path.join(__dirname, 'src', 'data'),
     js: path.join(__dirname, 'src', 'js'),
     css: path.join(__dirname, 'src', 'scss'),
-    svg: path.join(__dirname, 'src', 'svg'),
+    svgs: path.join(__dirname, 'src', 'svg'),
+    images: path.join(__dirname, 'src', 'images'),
   },
   dist: {
     root: path.join(__dirname, 'dist'),
@@ -175,7 +175,7 @@ const js = () => {
 
 const svg = () => {
   return gulp
-    .src(path.join(paths.src.svg, '*.svg'))
+    .src(path.join(paths.src.svgs, '*.svg'))
     .pipe(
       svgSprite({
         mode: {
@@ -186,6 +186,27 @@ const svg = () => {
       })
     )
     .pipe(gulp.dest(paths.dist.images))
+    .pipe(browserSync.stream())
+}
+
+const webps = () => {
+  return gulp
+    .src(path.join(paths.src.images, '*.png'))
+    .pipe(
+      webp({
+        quality: 75,
+      })
+    )
+    .pipe(gulp.dest(paths.dist.images))
+    .pipe(browserSync.stream())
+}
+
+const pngs = () => {
+  return gulp
+    .src(path.join(paths.src.images, '*.png'))
+    .pipe(imagemin())
+    .pipe(gulp.dest(paths.dist.images))
+    .pipe(browserSync.stream())
 }
 
 const clean = () => {
@@ -252,8 +273,22 @@ const watchFiles = () => {
   watch(
     ['./src/svg/*.svg'],
     gulp.series(
-      selectedClean.bind(this, [path.join(paths.dist.images, 'sprite.svg')]),
+      selectedClean.bind(this, [
+        path.join(paths.dist.images, 'symbol', 'sprite.svg'),
+      ]),
       svg
+    )
+  )
+
+  watch(
+    ['./src/images/*.png'],
+    gulp.series(
+      selectedClean.bind(this, [
+        path.join(paths.dist.images, '*.png'),
+        path.join(paths.dist.images, '*.webp'),
+      ]),
+      webps,
+      pngs
     )
   )
 }
@@ -265,7 +300,10 @@ const liveReload = () => {
   )
 }
 
-const baseTask = gulp.series(clean, gulp.parallel(styles, js, templating, svg))
+const baseTask = gulp.series(
+  clean,
+  gulp.parallel(styles, js, templating, svg, webps, pngs)
+)
 
 const dev = gulp.series(baseTask, watchFiles, liveReload)
 

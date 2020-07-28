@@ -49,8 +49,13 @@ block page__content
 
       main.catalog__main
         section.products-grid.grid
-          article.products-grid__item.product-card(v-for="item in items", href="#") 
-            img.product-card__image(:src="item.imageSrc", alt="кот")
+          article.products-grid__item.product-card(v-for="item in items", href="#")
+            picture.product-card__image(alt="Кот, котик, кошка")
+              //- source(srcset="assets/images/test@2x.webp" type="image/webp"  media="min-width:1281px")
+              source(srcset="assets/images/test@4x.webp" type="image/webp" media="min-width:1281px")
+              //- source(srcset="assets/images/test.webp" type="image/webp" )
+              img.product-card__image(src="./assets/images/test.png")
+
             .product-card__content
               h5.product-card__title {{ item.title }}
 

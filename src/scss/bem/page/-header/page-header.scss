@@ -17,6 +17,11 @@
     justify-content: space-between;
   }
 
+  &__home-link {
+    border-radius: 4px;
+    @include shadow-outline();
+  }
+
   &__nav {
     display: flex;
     flex-wrap: wrap;

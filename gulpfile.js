@@ -2,8 +2,8 @@ const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
 
 const path = require('path'),
-  del = require('del'),
-  fs = require('fs')
+  del = require('del')
+// fs = require('fs')
 
 const browserSync = require('browser-sync').create(),
   reload = browserSync.reload
@@ -13,8 +13,8 @@ const gulp = require('gulp'),
   concat = require('gulp-concat'),
   sourcemaps = require('gulp-sourcemaps'),
   uglify = require('gulp-uglify-es').default,
-  plumber = require('gulp-plumber'),
-  data = require('gulp-data')
+  plumber = require('gulp-plumber')
+// data = require('gulp-data')
 
 const rollup = require('gulp-better-rollup'),
   babel = require('rollup-plugin-babel'),
@@ -91,18 +91,6 @@ const templating = () => {
           console.log(err)
           this.emit('end')
         },
-      })
-    )
-    .pipe(
-      data(function (file) {
-        return JSON.parse(
-          fs.readFileSync(
-            path.join(
-              paths.src.data,
-              `${path.basename(file.path).replace(/\.[^/.]+$/, '')}.json`
-            )
-          )
-        )
       })
     )
     .pipe(

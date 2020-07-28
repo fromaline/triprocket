@@ -1,0 +1,14 @@
+@import './-header/page-header';
+@import './-head/page-head';
+@import './-content/page-content';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  &__content {
+    flex: 1;
+    padding-top: 40px;
+  }
+}

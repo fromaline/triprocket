@@ -1,6 +1,4 @@
-import vSelect from 'vue-select'
 import './plugins/mmenu'
-// import '@shoelace-style/shoelace'
 
 document.addEventListener('DOMContentLoaded', () => {
   const mobileMenu = new Mmenu('#mobile-menu', {

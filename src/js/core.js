@@ -1,4 +1,5 @@
 import Mmenu from 'mmenu-js'
+import twoWayBinding from './twoWayBinding'
 
 document.addEventListener('DOMContentLoaded', () => {
   new Mmenu('#mobile-menu', {
@@ -8,11 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   })
 
-  const catalogItems = document.querySelectorAll(
-    '[data-catalog-items] [data-catalog-item]'
-  )
+  // const catalogItems = document.querySelectorAll(
+  //   '[data-catalog-items] [data-catalog-item]'
+  // )
 
-  catalogItems?.forEach(catalogItem => {
-    console.log(JSON.parse(catalogItem.dataset.equipment))
-  })
+  // catalogItems?.forEach(catalogItem => {
+  //   console.log(JSON.parse(catalogItem.dataset.equipment))
+  // })
+
+  document.scope = twoWayBinding()
+  console.log(document.scope)
 })

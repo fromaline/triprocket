@@ -1,5 +1,3 @@
-@import './__button/product-card__button';
-
 .product-card {
   display: flex;
   flex-direction: column;
@@ -28,6 +26,10 @@
     border-right: 1px solid #e1e1e1;
     border-bottom: 1px solid #e1e1e1;
     border-left: 1px solid #e1e1e1;
+
+    @media (--tablet-max) {
+      padding: 15px;
+    }
   }
 
   &__title {
@@ -51,6 +53,10 @@
     font-style: normal;
     line-height: px-to-rem(17);
 
+    &:last-of-type {
+      margin-bottom: 12px;
+    }
+
     .equipment-svgs {
       margin-left: 12px;
 
@@ -69,5 +75,9 @@
     font-family: $font-lato;
     font-style: normal;
     line-height: px-to-rem(22);
+  }
+
+  &__button {
+    margin-top: auto;
   }
 }

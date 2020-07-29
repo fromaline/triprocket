@@ -14,7 +14,9 @@
 
   @include shadow-outline();
 
-  &:focus {
-    // border: transparent;
+  &[type='number'],
+  &[type='text'] {
+    padding-right: 2px;
+    padding-left: 2px;
   }
 }

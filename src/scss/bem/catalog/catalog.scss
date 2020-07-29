@@ -11,12 +11,33 @@
   }
 
   &__aside {
+    margin-right: auto;
+    margin-left: auto;
     padding-top: 4px;
 
-    @media (--laptop-s-max) and (--mobile-landscape-min) {
-      width: 50%;
-      margin-right: auto;
-      margin-left: auto;
+    @media (--laptop-s-max) {
+      width: 25%;
+    }
+
+    @media (--tablet-max) {
+      width: 75%;
+    }
+
+    @media (--mobile-landscape-max) {
+      width: 100%;
+    }
+  }
+
+  &__main {
+    margin-right: auto;
+    margin-left: auto;
+
+    @media (--laptop-s-max) {
+      width: 75%;
+    }
+
+    @media (--mobile-landscape-max) {
+      width: 100%;
     }
   }
 }

@@ -20,20 +20,20 @@ $trans-slow: all 0.45s ease-in-out;
 
 $z-header: 2;
 
-@custom-media --laptop-min (min-width: 1400px);
+@custom-media --laptop-min (min-width: 1401px);
 @custom-media --laptop-max (max-width: 1400px);
 
-@custom-media --laptop-s-min (min-width: 1280px);
+@custom-media --laptop-s-min (min-width: 1281px);
 @custom-media --laptop-s-max (max-width: 1280px);
 
-@custom-media --tablet-min (min-width: 1024px);
+@custom-media --tablet-min (min-width: 1025px);
 @custom-media --tablet-max (max-width: 1024px);
 
-@custom-media --mobile-landscape-big-min (min-width: 850px);
+@custom-media --mobile-landscape-big-min (min-width: 851px);
 @custom-media --mobile-landscape-big-max (max-width: 850px);
 
-@custom-media --mobile-landscape-min (min-width: 768px);
+@custom-media --mobile-landscape-min (min-width: 769px);
 @custom-media --mobile-landscape-max (max-width: 768px);
 
-@custom-media --mobile-min (min-width: 500px);
+@custom-media --mobile-min (min-width: 501px);
 @custom-media --mobile-max (max-width: 500px);

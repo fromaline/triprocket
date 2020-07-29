@@ -1,3 +1,7 @@
 :root {
   font-size: 14px;
+
+  @media (--mobile-landscape-max) {
+    font-size: 13px;
+  }
 }

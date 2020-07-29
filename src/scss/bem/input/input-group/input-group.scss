@@ -1,0 +1,17 @@
+.input-group {
+  &__title {
+    margin-bottom: 15px;
+
+    font-weight: 500;
+    font-size: px-to-rem(16);
+    font-family: $font-lato;
+    font-style: normal;
+    line-height: px-to-rem(19);
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 14px;
+    }
+  }
+}

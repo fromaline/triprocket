@@ -20,6 +20,10 @@
       @include restricted-hover {
         color: $color-accent-500;
       }
+
+      &:focus {
+        color: $color-accent-500;
+      }
     }
   }
 }

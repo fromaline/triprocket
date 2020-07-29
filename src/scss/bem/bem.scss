@@ -1,8 +1,19 @@
-@import './catalog/catalog';
-@import './filters-form/filters-form';
 @import './input/input';
-@import './nav/nav';
-@import './page/page';
-@import './products-grid/products-grid';
-@import './product-card/product-card';
+
+@import './inputs-container/inputs-container';
+
+@import './checkbox/checkbox';
+
 @import './button/button';
+
+@import './catalog/catalog';
+
+@import './filters-form/filters-form';
+
+@import './nav/nav';
+
+@import './page/page';
+
+@import './products-grid/products-grid';
+
+@import './product-card/product-card';

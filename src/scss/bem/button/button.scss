@@ -19,23 +19,16 @@
   cursor: pointer;
 
   &__icon-wrapper {
-    position: absolute;
-    top: 50%;
-    right: 5px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
+    @include sizes(34px);
 
     background: #fff;
 
     border-radius: 50%;
 
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-    transform: translateY(-50%);
   }
 
   &_color_accent-100 {
@@ -66,8 +59,18 @@
   }
 
   &_with-icon {
+    justify-content: space-between;
     min-height: 46px;
-    padding-right: 39px;
+    // padding-right: 39px;
     padding-left: 39px;
+
+    .button__text {
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .button__icon-wrapper {
+      margin-left: auto;
+    }
   }
 }

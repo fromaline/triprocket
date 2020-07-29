@@ -42,5 +42,28 @@
       "equipment": { "tray": true, "tower": true, "ball": true, "house": true },
       "cost": 600
     }
+  ],
+  "squares": [0.63, 0.9, 1.13, 1.56, 2.56, 2.88],
+  "equipments": [
+    {
+      "name": "empty",
+      "text": "Пустой номер"
+    },
+    {
+      "name": "tray",
+      "text": "Лежак"
+    },
+    {
+      "name": "tower",
+      "text": "Когтеточка"
+    },
+    {
+      "name": "ball",
+      "text": "Игровой-комплекс"
+    },
+    {
+      "name": "house",
+      "text": "Домик"
+    }
   ]
 }

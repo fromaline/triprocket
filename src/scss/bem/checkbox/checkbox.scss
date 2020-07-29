@@ -1,0 +1,38 @@
+.checkbox {
+  position: relative;
+
+  @include sizes(20px);
+
+  svg {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    opacity: 0;
+
+    transition: all 0.1s ease;
+  }
+
+  input[type='checkbox'] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    @include sizes(18px);
+    border-radius: 1px;
+
+    cursor: pointer;
+    // opacity: 0;
+    appearance: none;
+
+    &:checked + svg {
+      opacity: 1;
+    }
+
+    @include shadow-outline();
+  }
+}

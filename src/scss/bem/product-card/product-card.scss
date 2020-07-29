@@ -23,7 +23,7 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    padding: 20px 15px;
+    padding: 20px 18px 25px;
 
     border-right: 1px solid #e1e1e1;
     border-bottom: 1px solid #e1e1e1;
@@ -42,7 +42,7 @@
   }
 
   &__point {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 
     color: $color-black;
     font-weight: normal;
@@ -51,16 +51,18 @@
     font-style: normal;
     line-height: px-to-rem(17);
 
-    &_equipment-svgs {
-      margin-left: 8px;
+    .equipment-svgs {
+      margin-left: 12px;
 
       svg:not(:last-child) {
-        margin-right: 3px;
+        margin-right: 8px;
       }
     }
   }
 
   &__price {
+    margin-left: 6px;
+
     color: $color-black;
     font-weight: 700;
     font-size: px-to-rem(18);

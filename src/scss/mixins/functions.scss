@@ -17,6 +17,6 @@
 }
 
 @function px-to-rem($px) {
-  $rems: (calc(#{$px} / 14));
-  @return $rems + 'rem';
+  $rems: ($px / 14);
+  @return $rems + rem;
 }

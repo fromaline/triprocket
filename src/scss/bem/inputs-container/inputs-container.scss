@@ -1,0 +1,17 @@
+.inputs-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  > .input {
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+
+  &_row_2 {
+    .input {
+      width: 49%;
+    }
+  }
+}

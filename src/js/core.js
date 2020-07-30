@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
     itemsData.push(dataObject)
   })
 
+  console.log(itemsData)
+
   // Unique object that holds all custom functionality, that allow frontend filters work with frameworkless approach
   const fromaline = {
     somethingChanged: () => {},
@@ -54,12 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
     return (
       !!twBind['cost-end'] ||
       !!twBind['cost-start'] ||
-      twBind['equipment-0.9'] ||
-      twBind['equipment-0.63'] ||
-      twBind['equipment-1.13'] ||
-      twBind['equipment-1.56'] ||
-      twBind['equipment-2.56'] ||
-      twBind['equipment-2.88'] ||
+      twBind['square-0.9'] ||
+      twBind['square-0.63'] ||
+      twBind['square-1.13'] ||
+      twBind['square-1.56'] ||
+      twBind['square-2.56'] ||
+      twBind['square-2.88'] ||
       twBind['equipment-ball'] ||
       twBind['equipment-empty'] ||
       twBind['equipment-house'] ||
@@ -72,17 +74,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const resetAllFilterInputs = () => {
     twBind['cost-end'] = ''
     twBind['cost-start'] = ''
-    twBind['equipment-0.9'] = false
-    twBind['equipment-0.63'] = false
-    twBind['equipment-1.13'] = false
-    twBind['equipment-1.56'] = false
-    twBind['equipment-2.56'] = false
-    twBind['equipment-2.88'] = false
+    twBind['square-0.9'] = false
+    twBind['square-0.63'] = false
+    twBind['square-1.13'] = false
+    twBind['square-1.56'] = false
+    twBind['square-2.56'] = false
+    twBind['square-2.88'] = false
     twBind['equipment-ball'] = false
     twBind['equipment-empty'] = false
     twBind['equipment-house'] = false
     twBind['equipment-tower'] = false
     twBind['equipment-tray'] = false
+  }
+
+  const setNewItems = newItemsData => {
+    if (newItemsData.length === 0) {
+      $catalogItemsWrapper.innerHTML = 'Нет подходящих товаров'
+      return
+    }
+    // Resets previous catalog items to fill up with sorted items in future
+    $catalogItemsWrapper.innerHTML = ''
+
+    newItemsData.forEach(item => {
+      $catalogItemsWrapper.append(item.$actualItem)
+    })
   }
 
   // Get filters form, which contains inputs that filters items
@@ -107,13 +122,59 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault()
     resetAllFilterInputs()
     condRender.resetFiltersButton = checkIfAnyFilterInputIsEmpty()
+    setNewItems(itemsData)
   })
 
   $form.addEventListener('submit', e => {
     e.preventDefault()
+    let newItems
 
-    // if (!checkIfAnyFilterInputIsEmpty()) {
-    // }
+    const startCost = twBind['cost-start'] !== '' ? +twBind['cost-start'] : 0
+    const endConst =
+      twBind['cost-end'] !== '' ? +twBind['cost-end'] : Number.MAX_SAFE_INTEGER
+
+    newItems = [...itemsData].filter(item => {
+      if (item.cost >= startCost && item.cost <= endConst) {
+        return item
+      }
+    })
+
+    const squareObj = {
+      '0.63': twBind['square-0.63'],
+      '0.9': twBind['square-0.9'],
+      '1.13': twBind['square-1.13'],
+      '1.56': twBind['square-1.56'],
+      '2.56': twBind['square-2.56'],
+      '2.88': twBind['square-2.88'],
+    }
+
+    newItems = [...newItems].filter(item => {
+      if (squareObj[item.square] === true) {
+        return item
+      }
+    })
+
+    const equipmentObj = {
+      ball: twBind['equipment-ball'],
+      empty: twBind['equipment-empty'],
+      house: twBind['equipment-house'],
+      tower: twBind['equipment-tower'],
+      tray: twBind['equipment-tray'],
+    }
+
+    newItems = [...newItems].filter(item => {
+      const isReturn = []
+      // eslint-disable-next-line
+      for (const equip in item.equipment) {
+        if (item.equipment[equip] !== equipmentObj[equip]) {
+          isReturn.push(1)
+        }
+      }
+
+      if (isReturn.length === 0) return item
+    })
+
+    setNewItems(newItems)
   })
 
   // Get select, that needs to filter catalog items
@@ -150,11 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
         break
     }
 
-    // Resets previous catalog items to fill up with sorted items in future
-    $catalogItemsWrapper.innerHTML = ''
-
-    itemsData.forEach(item => {
-      $catalogItemsWrapper.append(item.$actualItem)
-    })
+    setNewItems(itemsData)
   })
 })

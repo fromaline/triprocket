@@ -1,6 +1,9 @@
 @import './foundation/foundation';
 @import './base/base';
-@import './plugins/plugins';
+// @import './plugins/plugins';
+@import '../../node_modules/mmenu-js/dist/mmenu.css';
+@import '../../node_modules/mburger-css/dist/mburger.css';
+@import '../../node_modules/@shoelace-style/shoelace/dist/shoelace/shoelace.css';
 @import './mixins/mixins';
 @import './utils/utils';
 @import './layout/layout';

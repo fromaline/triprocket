@@ -53,6 +53,8 @@ const twoWayBinding = () => {
       // Add relevant event listeners in order to react to input
       $element.addEventListener('keyup', () => {
         scope[propToBind] = $element.value
+
+        document.fromaline.somethingChanged()
       })
     }
 
@@ -64,6 +66,8 @@ const twoWayBinding = () => {
       // Add relevant event listeners in order to react to input
       $element.addEventListener('change', () => {
         scope[propToBind] = $element.checked
+
+        document.fromaline.somethingChanged()
       })
     }
   })

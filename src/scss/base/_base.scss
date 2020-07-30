@@ -1,1 +1,9 @@
 @import './variables';
+
+*[data-show='true'] {
+  display: block !important;
+}
+
+*[data-show='false'] {
+  display: none !important;
+}

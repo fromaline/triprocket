@@ -98,6 +98,12 @@ button {
 
 *:focus {
   outline: none; }
+*[data-show='true'] {
+  display: block !important; }
+
+*[data-show='false'] {
+  display: none !important; }
+
 /*!
  * mmenu.js
  * mmenujs.com

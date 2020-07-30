@@ -10,6 +10,7 @@ block page__content
           | ↑ По площади
         sl-menu-item(value="square-down")
           | ↓ По площади
+        sl-menu-divider
         sl-menu-item(value="cost-up")
           | ↑ По цене
         sl-menu-item(value="cost-down")
@@ -47,7 +48,7 @@ block page__content
 
           .input-group.filters-form__item
             button(type="submit").input-group__item.button.button_color_accent-100.button_full-width.filters-form Применить
-            button(type="reset" data-conditional-rendering="reset-filters-button").input-group__item.button.button_color_accent-100.button_full-width.filters-form Сбросить фильтр
+            button(type="reset" data-conditional-rendering="resetFiltersButton" data-show="false").input-group__item.button.button_color_accent-100.button_full-width.filters-form Сбросить фильтр
 
       main.catalog__main
         section.products-grid.grid(data-catalog-items)

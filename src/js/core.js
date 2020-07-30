@@ -1,5 +1,6 @@
 import Mmenu from 'mmenu-js'
 import twoWayBinding from './twoWayBinding'
+import conditionalRendering from './conditionalRendering'
 
 document.addEventListener('DOMContentLoaded', () => {
   new Mmenu('#mobile-menu', {
@@ -17,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
   //   console.log(JSON.parse(catalogItem.dataset.equipment))
   // })
 
-  document.scope = twoWayBinding()
-  console.log(document.scope)
+  document.fromaline = {
+    scope: twoWayBinding(),
+    conditionalRendering: conditionalRendering(),
+  }
 })

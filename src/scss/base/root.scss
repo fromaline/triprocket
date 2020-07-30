@@ -1,6 +1,9 @@
 :root {
   font-size: 14px;
 
+  --sl-color-primary-hue: 39;
+  --sl-color-primary-saturation: 94%;
+
   @media (--mobile-landscape-max) {
     font-size: 13px;
   }

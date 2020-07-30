@@ -5,11 +5,12 @@ block page__content
     .page-content__head.page-head
       h1.page-head__title Наши номера
 
-      sl-select(placeholder="Фильтровать")
+      sl-select(placeholder="Фильтровать" data-filters-select)
         sl-menu-item(value="square-up")
           | ↑ По площади
         sl-menu-item(value="square-down")
           | ↓ По площади
+        sl-menu-divider
         sl-menu-item(value="cost-up")
           | ↑ По цене
         sl-menu-item(value="cost-down")
@@ -21,15 +22,15 @@ block page__content
           .input-group.filters-form__item
             p.input-group__title Цена за сутки,₽
             .input-group__item.inputs-container.inputs-container_row_2
-              input.input(type="number")
-              input.input(type="number")
+              input.input(type="number" data-tw-bind="cost-start")
+              input.input(type="number" data-tw-bind="cost-end")
         
           .input-group.filters-form__item
             p.input-group__title Площадь
             each square in squares
               .input-group__item.input-container
                 .input-container__input.input.checkbox
-                  input(type="checkbox") 
+                  input(type="checkbox" data-tw-bind='square-' + square ) 
                   svg.check-svg(role="img")
                     use(xlink:href="./assets/images/symbol/sprite.svg#check-svg")
                 label.input-container__label=square + 'м2'
@@ -40,19 +41,19 @@ block page__content
             each equipment in equipments
               .input-group__item.input-container
                 .input-container__input.input.checkbox
-                  input(type="checkbox") 
+                  input(type="checkbox" data-tw-bind='equipment-' + equipment.name ) 
                   svg.check-svg(role="img")
                     use(xlink:href="./assets/images/symbol/sprite.svg#check-svg")
                 label.input-container__label=equipment.text
 
           .input-group.filters-form__item
             button(type="submit").input-group__item.button.button_color_accent-100.button_full-width.filters-form Применить
-            button(type="reset").input-group__item.button.button_color_accent-100.button_full-width.filters-form Сбросить фильтр
+            button(type="reset" data-conditional-rendering="resetFiltersButton" data-show="false").input-group__item.button.button_color_accent-100.button_full-width.filters-form Сбросить фильтр
 
       main.catalog__main
         section.products-grid.grid(data-catalog-items)
           each item, index in catalogItems
-            article.products-grid__item.product-card(v-for="item in items", href="#" data-cost=item.cost data-size=item.sizes data-equipment=item.equipment data-catalog-item)
+            article.products-grid__item.product-card(data-cost=item.cost data-square=item.square data-equipment=item.equipment data-catalog-item)
               picture.product-card__image(alt="Кот, котик, кошка")
                 include ../mixins/Picture
                 block content

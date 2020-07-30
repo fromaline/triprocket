@@ -1,1 +1,10 @@
 @import './variables';
+@import './root';
+
+*[data-show='true'] {
+  display: block !important;
+}
+
+*[data-show='false'] {
+  display: none !important;
+}

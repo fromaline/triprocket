@@ -2,17 +2,17 @@ import initMobileMenu from './initMobileMenu'
 import twoWayBinding from './twoWayBinding'
 import conditionalRendering from './conditionalRendering'
 import { isElementTextbox, isElementCheckbox } from './helpers'
-import tippy from 'tippy.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu()
-
-  tippy('[data-tippy-content]')
 
   // Get all items in catalog that has appropriate data and needs to be manipulated
   const $catalogItems = document.querySelectorAll(
     '[data-catalog-items] [data-catalog-item]'
   )
+
+  // Get catalog items wrapper in order to rerender items after filtering or sorting
+  const $catalogItemsWrapper = $catalogItems[0].parentElement
 
   // Array would hold objects, that represent each element with relevant data attached to it
   const itemsData = []
@@ -40,12 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
     conditionalRendering: conditionalRendering(),
   }
 
+  // Make unique object globally available
   document.fromaline = fromaline
 
+  // Reference to two way binding allows easily accessing withput quering from parent object
   const twBind = document.fromaline.twoWayBinding
 
+  // Reference to conditional rendering allows easily accessing withput quering from parent object
   const condRender = document.fromaline.conditionalRendering
 
+  // Checks all two way binded inputs for empty ones
   const checkIfAnyFilterInputIsEmpty = () => {
     return (
       !!twBind['cost-end'] ||
@@ -64,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     )
   }
 
+  // Reset all filters, that two way binded; Resetting through setter in order to track it easily
   const resetAllFilterInputs = () => {
     twBind['cost-end'] = ''
     twBind['cost-start'] = ''
@@ -80,8 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
     twBind['equipment-tray'] = false
   }
 
+  // Get filters form, which contains inputs that filters items
   const $form = document.querySelector('[data-filters-form]')
 
+  // Two way binded inputs in filters form
   const $twoWayBindedInputsInForm = $form.querySelectorAll('[data-tw-bind]')
 
   $twoWayBindedInputsInForm?.forEach($input => {
@@ -107,5 +114,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // if (!checkIfAnyFilterInputIsEmpty()) {
     // }
+  })
+
+  // Get select, that needs to filter catalog items
+  const filtersSelect = document.querySelector('[data-filters-select]')
+
+  // Add event listener for custom event emitted by custom web-component select in order to track users input; This particular web-component does not emit "select" event, so afterHide is best we have
+  filtersSelect.addEventListener('slAfterHide', () => {
+    // Get order in which items need to be sorted from select
+    const order = filtersSelect.value
+
+    // Checks if this order is empty string or undefined 'cauze shoelase custom web-component select sets this values too
+    if (order === '' || order === undefined) return
+
+    switch (order) {
+      case 'square-up':
+        itemsData.sort((a, b) => {
+          return a.square - b.square
+        })
+        break
+      case 'square-down':
+        itemsData.sort((a, b) => {
+          return b.square - a.square
+        })
+        break
+      case 'cost-up':
+        itemsData.sort((a, b) => {
+          return a.cost - b.cost
+        })
+        break
+      case 'cost-down':
+        itemsData.sort((a, b) => {
+          return b.cost - a.cost
+        })
+        break
+    }
+
+    // Resets previous catalog items to fill up with sorted items in future
+    $catalogItemsWrapper.innerHTML = ''
+
+    itemsData.forEach(item => {
+      $catalogItemsWrapper.append(item.$actualItem)
+    })
   })
 })

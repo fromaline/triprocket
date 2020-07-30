@@ -53,7 +53,7 @@ block page__content
       main.catalog__main
         section.products-grid.grid(data-catalog-items)
           each item, index in catalogItems
-            article.products-grid__item.product-card(v-for="item in items", href="#" data-cost=item.cost data-size=item.sizes data-equipment=item.equipment data-catalog-item)
+            article.products-grid__item.product-card(data-cost=item.cost data-square=item.square data-equipment=item.equipment data-catalog-item)
               picture.product-card__image(alt="Кот, котик, кошка")
                 include ../mixins/Picture
                 block content

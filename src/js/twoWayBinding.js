@@ -2,26 +2,26 @@ import { isElementTextbox, isElementCheckbox } from './helpers'
 
 /**
  * Sets two-way binding
- * @return {void}
+ * @return {Object} Object to which variables that two-way binded attached
  */
 const twoWayBinding = () => {
   const $elements = document.querySelectorAll('[data-tw-bind]')
+  // Object to which variables that two-way binded attached
   const scope = {}
 
   /**
-   * Binds prop to element
+   * Binds prop to to real DOM element
    * @param {String} prop Property of element to bind
    * @param {String | Boolean} initialValue Initial value of element (string for textboxes, boolean for checkboxes)
    * @return {void}
    */
-  const addScopeProp = (prop, initialValue) => {
+  const addPropToScope = (prop, initialValue) => {
     // Add property if it doesn't added yet
     if (!Object.prototype.hasOwnProperty.call(scope, prop)) {
       let value = initialValue
 
-      // Define or override property
+      // Define property in scope
       Object.defineProperty(scope, prop, {
-        // Set new value
         set: newValue => {
           value = newValue
           $elements.forEach($element => {
@@ -37,22 +37,20 @@ const twoWayBinding = () => {
             }
           })
         },
-        // Get the current value
         get: () => {
           return value
         },
-        enumerable: true,
       })
     }
   }
 
   $elements?.forEach($element => {
-    // Executes scope setter
     if (isElementTextbox($element)) {
       const propToBind = $element.getAttribute('data-tw-bind')
 
-      addScopeProp(propToBind, '')
+      addPropToScope(propToBind, '')
 
+      // Add relevant event listeners in order to react to input
       $element.addEventListener('keyup', () => {
         scope[propToBind] = $element.value
       })
@@ -61,8 +59,9 @@ const twoWayBinding = () => {
     if (isElementCheckbox($element)) {
       const propToBind = $element.getAttribute('data-tw-bind')
 
-      addScopeProp(propToBind, false)
+      addPropToScope(propToBind, false)
 
+      // Add relevant event listeners in order to react to input
       $element.addEventListener('change', () => {
         scope[propToBind] = $element.checked
       })
